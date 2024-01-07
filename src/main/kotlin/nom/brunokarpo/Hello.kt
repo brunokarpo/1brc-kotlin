@@ -5,8 +5,6 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 fun main() = runBlocking {
     val startTime = Instant.now().toEpochMilli()
