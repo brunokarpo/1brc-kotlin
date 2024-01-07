@@ -19,7 +19,7 @@ class MeasurementResult(
         counter++
     }
 
-    fun printResult(): String {
+    override fun toString(): String {
         return String.format(Locale.ENGLISH, "%s=%.1f/%.1f/%.1f", station, min, mean, max)
     }
 }

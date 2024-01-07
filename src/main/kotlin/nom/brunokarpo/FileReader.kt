@@ -14,11 +14,19 @@ class FileReader(
     private val reader = Files.newBufferedReader(Path.of(filename), Charset.defaultCharset())
 
     suspend fun readNextLine(channel: SendChannel<String>) : Boolean = withContext(Dispatchers.IO) {
+        println("Reading next line of file")
         return@withContext try {
-            channel.send(reader.readLine())
-            true
+            reader.readLine()?.let {
+                channel.send(it)
+                return@let true
+            } ?: kotlin.run {
+                println("Last line of file read. Closing channel to send")
+                channel.close()
+                false
+            }
         } catch (ex: IOException) {
-            println("End of the file")
+            println("End of the file. Closing channel to send")
+            channel.close(ex)
             false
         }
     }
