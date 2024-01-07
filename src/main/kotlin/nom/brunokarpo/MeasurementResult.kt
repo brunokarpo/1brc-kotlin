@@ -1,6 +1,5 @@
 package nom.brunokarpo
 
-import java.math.BigDecimal
 import java.util.Locale
 
 class MeasurementResult(
